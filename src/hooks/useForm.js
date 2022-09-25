@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 
+// Hooks is useful for managing state
 export function useForm(getFreshModelObject) {
     const [values, setValues] = useState(getFreshModelObject());
     const [errors, setErrors] = useState({});
