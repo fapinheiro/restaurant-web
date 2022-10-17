@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 
 // Hooks is useful for managing state
 export function useForm(getFreshModelObject) {

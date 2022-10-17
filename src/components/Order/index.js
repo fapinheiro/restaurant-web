@@ -27,44 +27,31 @@ export default function Order() {
         handleInputChange,
         resetFormControls } = useForm(getFreshModelObject);
 
-    const addFoodItem = foodItem => {
-        let x = {
-            orderMasterId: values.orderMasterId,
-            orderDetailId: 0,
-            foodItemId: foodItem.foodItemId,
-            quantity: 1,
-            foodItemPrice: foodItem.foodItemPrice,
-            foodItemName: foodItem.foodItemName
-        };
-        setValues({
-            ...values,
-            orderDetails: [
-                ...values.orderDetails,
-                x
-            ]
-        })
-    };
+    
 
-    const removeFoodItem = (idx, id) => {
-        let x = {...values};
-        x.orderDetails = x.orderDetails.filter((item, i) => i != idx);
-        setValues({
-            ...x
-        })
-    }
+    
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
                 <OrderForm
                     values={values}
+                    setValues={setValues}
                     errors={errors}
-                    handleInputChange={handleInputChange} />
+                    setErrors={setErrors}
+                    handleInputChange={handleInputChange} 
+                    resetFormControls={resetFormControls}/>
             </Grid>
             <Grid item xs={6}>
-                <SearchFoodItem addFoodItem={addFoodItem} orderedFoodItems={values.orderDetails}/>
+                <SearchFoodItem 
+                     values={values}
+                     setValues={setValues}
+                     />
             </Grid>
             <Grid item xs={6}>
-                <OrderedFoodItem orderedFoodItems={values.orderDetails} removeFoodItem={removeFoodItem}/>
+                <OrderedFoodItem 
+                    values={values}
+                    setValues={setValues}
+                    />
             </Grid>
         </Grid>
     )
